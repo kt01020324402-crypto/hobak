@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>호박 (Hobak) - 우리 동네 따뜻한 중고거래</title>
+    <link rel="stylesheet" href="css/common.css" />
+    <link rel="stylesheet" href="css/list.css" />
+    <link rel="stylesheet" href="css/detail.css" />
+    <link rel="stylesheet" href="css/write.css" />
+    <link rel="stylesheet" href="css/auth.css" />
+    <link rel="stylesheet" href="css/antigravity.css" />
+  </head>
+  <body>
+    <!-- Antigravity 공간감 앰비언트 배경 오브 -->
+    <div class="ag-ambient-backdrop" aria-hidden="true">
+      <div class="ag-orb ag-orb--1"></div>
+      <div class="ag-orb ag-orb--2"></div>
+      <div class="ag-orb ag-orb--3"></div>
+    </div>
+
+    <!-- 공통 상단 헤더 -->
+    <header class="hobak-header">
+      <div class="hobak-header-inner">
+        <a href="#list" id="hobak-header-logo" class="hobak-logo" aria-label="호박 홈으로">
+          <span class="hobak-logo-icon" aria-hidden="true">🎃</span>
+          <span>호박</span>
+        </a>
+
+        <form id="hobak-header-search-form" class="hobak-search-wrap" role="search">
+          <input
+            id="hobak-header-search"
+            class="hobak-search-input"
+            type="search"
+            placeholder="물품이나 동네를 검색해보세요"
+            aria-label="물품이나 동네 검색"
+          />
+          <button type="submit" class="hobak-search-btn" aria-label="검색">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="11" cy="11" r="8"></circle>
+              <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            </svg>
+          </button>
+        </form>
+
+        <div class="hobak-header-actions">
+          <button
+            type="button"
+            id="hobak-header-write-btn"
+            class="hobak-btn hobak-btn-primary"
+          >
+            + 내 물건 팔기
+          </button>
+          <div class="hobak-auth-controls">
+            <button
+              type="button"
+              id="hobak-auth-login-btn"
+              class="hobak-btn hobak-btn-outline"
+            >
+              로그인
+            </button>
+            <span
+              id="hobak-auth-user-chip"
+              class="hobak-auth-user-chip hobak-auth-hidden"
+            ></span>
+            <button
+              type="button"
+              id="hobak-auth-logout-btn"
+              class="hobak-btn hobak-btn-outline hobak-auth-hidden"
+            >
+              로그아웃
+            </button>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- 페이지 본문 (목록 / 상세 / 글쓰기) -->
+    <main id="hobak-main"></main>
+
+    <!-- 공통 푸터 -->
+    <footer class="hobak-footer">
+      <div class="hobak-footer-inner">
+        <div class="hobak-footer-top">
+          <div class="hobak-footer-brand">
+            <div class="hobak-logo" style="font-size: 18px">
+              <span aria-hidden="true">🎃</span>
+              <span>호박마켓</span>
+            </div>
+            <p>우리 동네 이웃과 함께하는 따뜻하고 믿을 수 있는 중고거래</p>
+            <div>
+              <button type="button" id="hobak-reset-demo" class="hobak-btn hobak-btn-outline" style="height: 32px; font-size: 12px; padding: 0 12px">
+                데모 데이터 초기화
+              </button>
+            </div>
+          </div>
+
+          <div class="hobak-footer-cols">
+            <div class="hobak-footer-col">
+              <h4>회사</h4>
+              <ul>
+                <li><a href="#list">호박 소개</a></li>
+                <li><a href="#list">호박페이</a></li>
+                <li><a href="#list">동네생활</a></li>
+                <li><a href="#list">채용</a></li>
+              </ul>
+            </div>
+            <div class="hobak-footer-col">
+              <h4>탐색</h4>
+              <ul>
+                <li><a href="#list">중고거래</a></li>
+                <li><a href="#list">인기매물</a></li>
+                <li><a href="#write">내 물건 팔기</a></li>
+              </ul>
+            </div>
+            <div class="hobak-footer-col">
+              <h4>비즈니스</h4>
+              <ul>
+                <li><a href="#list">동네가게</a></li>
+                <li><a href="#list">호박비즈니스</a></li>
+                <li><a href="#list">광고센터</a></li>
+              </ul>
+            </div>
+            <div class="hobak-footer-col">
+              <h4>문의</h4>
+              <ul>
+                <li><a href="#list">자주 묻는 질문</a></li>
+                <li><a href="#list">고객센터</a></li>
+                <li><a href="#list">이용약관</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="hobak-footer-bottom">
+          <p>(주) 호박마켓 · 대표 호박이 · 사업자등록번호 000-00-00000</p>
+          <p>주소 서울특별시 강남구 호박로 123 · 고객문의 cs@hobakmarket.example</p>
+          <p>© Hobak Market. All rights reserved.</p>
+        </div>
+      </div>
+    </footer>
+
+    <script src="js/supabase-config.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/data.js"></script>
+    <script src="js/pages/list.js"></script>
+    <script src="js/pages/detail.js"></script>
+    <script src="js/pages/write.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/antigravity.js"></script>
+  </body>
+</html>

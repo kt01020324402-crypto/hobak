@@ -1,0 +1,335 @@
+/* ==========================================================================
+   Antigravity Design Expert Layer for 호박 (Hobak)
+   - Weightlessness (diffused layered shadows & floating surfaces)
+   - Spatial Depth (Z-axis layering, perspective, ambient parallax orbs)
+   - Glassmorphism (frosted translucent surfaces & specular borders)
+   - Interactive 3D Motion & Scroll Reveal (with prefers-reduced-motion)
+   ========================================================================== */
+
+:root {
+  --ag-glass-bg: rgba(255, 255, 255, 0.74);
+  --ag-glass-bg-strong: rgba(255, 255, 255, 0.84);
+  --ag-glass-border: rgba(255, 255, 255, 0.85);
+  --ag-glass-edge: rgba(255, 111, 15, 0.14);
+  --ag-shadow-float:
+    0 20px 44px -16px rgba(17, 24, 39, 0.1),
+    0 8px 20px -6px rgba(255, 111, 15, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.9);
+  --ag-shadow-hover:
+    0 28px 56px -14px rgba(17, 24, 39, 0.14),
+    0 12px 26px -6px rgba(255, 111, 15, 0.18),
+    inset 0 1px 0 rgba(255, 255, 255, 0.95);
+  --ag-ease-spring: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* 대기감 있는 공간 배경 캔버스 */
+body {
+  position: relative;
+  min-height: 100vh;
+  background:
+    radial-gradient(circle at 12% 10%, rgba(255, 111, 15, 0.07) 0%, transparent 42%),
+    radial-gradient(circle at 88% 18%, rgba(129, 140, 248, 0.08) 0%, transparent 40%),
+    radial-gradient(circle at 50% 85%, rgba(255, 176, 116, 0.09) 0%, transparent 48%),
+    linear-gradient(165deg, #fffaf6 0%, #f6f8fc 52%, #fff5ed 100%);
+  background-attachment: fixed;
+  overflow-x: hidden;
+}
+
+/* 부유하는 배경 앰비언트 오브 */
+.ag-ambient-backdrop {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: -1;
+  overflow: hidden;
+}
+
+.ag-orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(68px);
+  opacity: 0.45;
+  will-change: transform;
+  animation: ag-float 16s ease-in-out infinite alternate;
+}
+
+.ag-orb--1 {
+  width: 360px;
+  height: 360px;
+  top: -80px;
+  left: -60px;
+  background: radial-gradient(circle, rgba(255, 111, 15, 0.28), transparent 70%);
+}
+
+.ag-orb--2 {
+  width: 420px;
+  height: 420px;
+  top: 24%;
+  right: -110px;
+  background: radial-gradient(circle, rgba(129, 140, 248, 0.22), transparent 70%);
+  animation-delay: -5s;
+  animation-duration: 20s;
+}
+
+.ag-orb--3 {
+  width: 340px;
+  height: 340px;
+  bottom: -90px;
+  left: 28%;
+  background: radial-gradient(circle, rgba(255, 176, 116, 0.26), transparent 70%);
+  animation-delay: -9s;
+  animation-duration: 18s;
+}
+
+@keyframes ag-float {
+  0% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  100% {
+    transform: translate3d(24px, -28px, 0) scale(1.06);
+  }
+}
+
+/* 글래스모피즘 헤더 & 검색창 */
+.hobak-header {
+  background: rgba(255, 255, 255, 0.72);
+  backdrop-filter: blur(20px) saturate(165%);
+  -webkit-backdrop-filter: blur(20px) saturate(165%);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.75);
+  box-shadow: 0 8px 30px -12px rgba(17, 24, 39, 0.08);
+}
+
+.hobak-search-input {
+  background: rgba(255, 255, 255, 0.75);
+  border: 1px solid rgba(220, 222, 227, 0.8);
+  backdrop-filter: blur(8px);
+  box-shadow: inset 0 1px 2px rgba(17, 24, 39, 0.03);
+}
+
+.hobak-search-input:focus {
+  box-shadow: 0 0 0 4px rgba(255, 111, 15, 0.12);
+}
+
+/* 주황색 CTA 버튼 부유 글로우 */
+.hobak-btn-primary {
+  background: linear-gradient(135deg, #ff7e26 0%, #ff6f0f 100%);
+  box-shadow: 0 8px 20px -4px rgba(255, 111, 15, 0.42);
+  transition: transform 0.25s var(--ag-ease-spring), box-shadow 0.25s var(--ag-ease-spring), filter 0.2s;
+}
+
+.hobak-btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 26px -4px rgba(255, 111, 15, 0.52);
+  filter: brightness(1.03);
+}
+
+/* 타이포그래피: 그라디언트 클립 제목 */
+.hobak-list-title,
+.hobak-write-title {
+  background: linear-gradient(135deg, #1f2937 0%, #374151 55%, #ff6f0f 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* 상품 목록: 3D 원근감 그리드 & 무중력 글래스 카드 */
+.hobak-list-grid {
+  perspective: 1200px;
+}
+
+.hobak-list-card {
+  position: relative;
+  background: var(--ag-glass-bg);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--ag-glass-border);
+  border-radius: 16px;
+  padding: 12px;
+  box-shadow: var(--ag-shadow-float);
+  transform-style: preserve-3d;
+  will-change: transform;
+  transform: perspective(900px) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg)) translateY(0);
+  transition:
+    transform 0.35s var(--ag-ease-spring),
+    box-shadow 0.35s var(--ag-ease-spring),
+    border-color 0.25s ease;
+}
+
+/* 커서 추적 스페큘러 글레어 */
+.hobak-list-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  opacity: 0;
+  background: radial-gradient(
+    320px circle at var(--glare-x, 50%) var(--glare-y, 50%),
+    rgba(255, 255, 255, 0.55),
+    transparent 60%
+  );
+  transition: opacity 0.3s ease;
+}
+
+.hobak-list-card:hover {
+  border-color: var(--ag-glass-edge);
+  box-shadow: var(--ag-shadow-hover);
+  transform: perspective(900px) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg)) translateY(-6px);
+}
+
+.hobak-list-card:hover::after {
+  opacity: 1;
+}
+
+.hobak-list-thumb-wrap {
+  border-radius: 12px;
+  box-shadow: 0 6px 16px rgba(17, 24, 39, 0.06);
+  transform: translateZ(12px);
+}
+
+.hobak-list-badge {
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.14);
+  transform: translateZ(20px);
+}
+
+/* 필터 칩 & 사이드바 글래스 */
+.hobak-list-cat-chip,
+.hobak-list-filter-chip,
+.hobak-list-sort-select,
+.hobak-list-keyword-tag {
+  background: rgba(255, 255, 255, 0.72);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.85);
+  box-shadow: 0 4px 12px -4px rgba(17, 24, 39, 0.06);
+  transition: transform 0.2s var(--ag-ease-spring), box-shadow 0.2s ease, background-color 0.2s ease;
+}
+
+.hobak-list-cat-chip:hover,
+.hobak-list-filter-chip:hover,
+.hobak-list-keyword-tag:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 18px -6px rgba(255, 111, 15, 0.18);
+}
+
+.hobak-list-cat-chip.is-active,
+.hobak-list-filter-chip.is-active,
+.hobak-list-keyword-tag.is-active {
+  background: linear-gradient(135deg, #2b3038 0%, #16191d 100%);
+  color: #ffffff;
+  border-color: transparent;
+  box-shadow: 0 8px 20px -4px rgba(33, 37, 41, 0.35);
+}
+
+.hobak-list-popular-box,
+.hobak-list-filter-panel {
+  background: var(--ag-glass-bg-strong);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border: 1px solid var(--ag-glass-border);
+  box-shadow: var(--ag-shadow-float);
+}
+
+/* 상품 상세 페이지: 공간감 있는 글래스 카드 */
+.hobak-detail-card {
+  background: var(--ag-glass-bg-strong);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid var(--ag-glass-border);
+  border-radius: 20px;
+  box-shadow: var(--ag-shadow-float);
+  overflow: hidden;
+}
+
+.hobak-detail-close-btn,
+.hobak-detail-nav-btn {
+  background: rgba(255, 255, 255, 0.76);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.9);
+  box-shadow: 0 6px 16px rgba(17, 24, 39, 0.12);
+}
+
+.hobak-detail-app-btn {
+  background: linear-gradient(135deg, #ff7e26 0%, #ff6f0f 100%);
+  box-shadow: 0 8px 20px rgba(255, 111, 15, 0.38);
+}
+
+.hobak-detail-action-bar {
+  background: rgba(255, 255, 255, 0.82);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
+
+.hobak-detail-related-card {
+  background: var(--ag-glass-bg);
+  backdrop-filter: blur(14px);
+  border: 1px solid var(--ag-glass-border);
+  border-radius: 14px;
+  padding: 10px;
+  box-shadow: var(--ag-shadow-float);
+  will-change: transform;
+  transform: perspective(800px) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg));
+  transition: transform 0.35s var(--ag-ease-spring), box-shadow 0.35s var(--ag-ease-spring);
+}
+
+.hobak-detail-related-card:hover {
+  transform: perspective(800px) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg)) translateY(-5px);
+  box-shadow: var(--ag-shadow-hover);
+}
+
+/* 글쓰기 페이지: 플로팅 글래스 폼 */
+.hobak-write-form {
+  background: var(--ag-glass-bg-strong);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid var(--ag-glass-border);
+  border-radius: 20px;
+  padding: 28px;
+  box-shadow: var(--ag-shadow-float);
+}
+
+/* 푸터 글래스 */
+.hobak-footer {
+  background: rgba(248, 249, 250, 0.72);
+  backdrop-filter: blur(14px);
+  border-top: 1px solid rgba(255, 255, 255, 0.85);
+}
+
+/* 스크롤 연동 등장 애니메이션 */
+.ag-reveal {
+  opacity: 0;
+  transform: translateY(22px) scale(0.985);
+  transition:
+    opacity 0.55s var(--ag-ease-spring),
+    transform 0.55s var(--ag-ease-spring);
+  transition-delay: var(--ag-delay, 0ms);
+}
+
+.ag-reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+/* 접근성: 모션 감소 설정 존중 */
+@media (prefers-reduced-motion: reduce) {
+  .ag-orb {
+    animation: none;
+  }
+  .hobak-list-card,
+  .hobak-detail-related-card,
+  .hobak-btn-primary,
+  .ag-reveal {
+    transition: none;
+    transform: none !important;
+    opacity: 1 !important;
+  }
+}
+
+@media (max-width: 640px) {
+  .hobak-write-form {
+    padding: 18px;
+    border-radius: 16px;
+  }
+}

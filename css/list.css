@@ -1,0 +1,542 @@
+/* 호박 (Hobak) - 상품 목록 페이지 스타일 (.hobak-list-*) */
+
+.hobak-list-page {
+  max-width: var(--hobak-max-width);
+  margin: 0 auto;
+  padding: 20px 20px 0;
+}
+
+/* 상단 카테고리 칩 바 */
+.hobak-list-categories {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  overflow-x: auto;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--hobak-border);
+  scrollbar-width: none;
+}
+
+.hobak-list-categories::-webkit-scrollbar {
+  display: none;
+}
+
+.hobak-list-cat-chip {
+  flex-shrink: 0;
+  height: 36px;
+  padding: 0 15px;
+  border-radius: var(--hobak-radius-pill);
+  background: var(--hobak-chip-bg);
+  color: var(--hobak-text-sub);
+  font-size: 13.5px;
+  font-weight: 500;
+  border: 1px solid transparent;
+  transition: background-color 0.15s, color 0.15s, border-color 0.15s;
+}
+
+.hobak-list-cat-chip:hover {
+  background: #e9ecef;
+  color: var(--hobak-text);
+}
+
+.hobak-list-cat-chip.is-active {
+  background: #212529;
+  color: #ffffff;
+  font-weight: 600;
+}
+
+/* 타이틀 영역 */
+.hobak-list-header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: 22px;
+  margin-bottom: 14px;
+}
+
+.hobak-list-title-wrap {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.hobak-list-title {
+  font-size: 22px;
+  font-weight: 800;
+  color: var(--hobak-text);
+  letter-spacing: -0.4px;
+  line-height: 1.3;
+}
+
+.hobak-list-count-badge {
+  display: inline-flex;
+  align-items: center;
+  height: 24px;
+  padding: 0 10px;
+  border-radius: var(--hobak-radius-pill);
+  background: var(--hobak-orange-light);
+  color: var(--hobak-orange);
+  font-size: 12.5px;
+  font-weight: 700;
+}
+
+.hobak-list-query-clear {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  height: 26px;
+  padding: 0 10px;
+  border-radius: var(--hobak-radius-pill);
+  background: var(--hobak-chip-bg);
+  color: var(--hobak-text-sub);
+  font-size: 12px;
+  font-weight: 600;
+  transition: background-color 0.15s;
+}
+
+.hobak-list-query-clear:hover {
+  background: #e2e4e9;
+  color: var(--hobak-text);
+}
+
+/* 필터 & 정렬 바 */
+.hobak-list-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 18px;
+}
+
+.hobak-list-filters {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+}
+
+.hobak-list-filter-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  height: 34px;
+  padding: 0 14px;
+  border-radius: var(--hobak-radius-pill);
+  border: 1px solid var(--hobak-border-dark);
+  background: #ffffff;
+  color: var(--hobak-text);
+  font-size: 13px;
+  font-weight: 500;
+  transition: background-color 0.15s, border-color 0.15s, color 0.15s;
+}
+
+.hobak-list-filter-chip:hover {
+  background: var(--hobak-bg-sub);
+}
+
+.hobak-list-filter-chip.is-active {
+  background: #212529;
+  border-color: #212529;
+  color: #ffffff;
+  font-weight: 600;
+}
+
+.hobak-list-sort-wrap {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.hobak-list-sort-select {
+  height: 34px;
+  padding: 0 12px;
+  border-radius: var(--hobak-radius-pill);
+  border: 1px solid var(--hobak-border-dark);
+  background: #ffffff;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--hobak-text);
+  cursor: pointer;
+}
+
+.hobak-list-sort-select:focus {
+  outline: none;
+  border-color: var(--hobak-orange);
+}
+
+/* 확장 필터 패널 */
+.hobak-list-filter-panel {
+  display: none;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 16px;
+  margin-bottom: 20px;
+  border-radius: var(--hobak-radius-md);
+  background: var(--hobak-bg-sub);
+  border: 1px solid var(--hobak-border);
+}
+
+.hobak-list-filter-panel.is-open {
+  display: flex;
+}
+
+.hobak-list-filter-group {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+}
+
+.hobak-list-filter-label {
+  font-weight: 700;
+  color: var(--hobak-text-sub);
+}
+
+.hobak-list-filter-select {
+  height: 32px;
+  padding: 0 10px;
+  border-radius: var(--hobak-radius-sm);
+  border: 1px solid var(--hobak-border-dark);
+  background: #ffffff;
+  font-size: 13px;
+}
+
+.hobak-list-filter-reset {
+  margin-left: auto;
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--hobak-text-muted);
+  text-decoration: underline;
+}
+
+.hobak-list-filter-reset:hover {
+  color: var(--hobak-text);
+}
+
+/* 메인 2컬럼 레이아웃 */
+.hobak-list-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 236px;
+  gap: 28px;
+  align-items: start;
+}
+
+.hobak-list-main {
+  min-width: 0;
+}
+
+/* 상품 3열 그리드 */
+.hobak-list-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 28px 18px;
+}
+
+/* 상품 카드 */
+.hobak-list-card {
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+  min-width: 0;
+}
+
+.hobak-list-thumb-wrap {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  border-radius: var(--hobak-radius-md);
+  border: 1px solid var(--hobak-border);
+  background: var(--hobak-bg-sub);
+  overflow: hidden;
+  margin-bottom: 10px;
+}
+
+.hobak-list-thumb {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.25s ease;
+}
+
+.hobak-list-card:hover .hobak-list-thumb {
+  transform: scale(1.04);
+}
+
+.hobak-list-badge {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  display: inline-flex;
+  align-items: center;
+  height: 24px;
+  padding: 0 9px;
+  border-radius: var(--hobak-radius-sm);
+  font-size: 11.5px;
+  font-weight: 700;
+  color: #ffffff;
+  box-shadow: var(--hobak-shadow-sm);
+}
+
+.hobak-list-badge--reserved {
+  background: #0ca678;
+}
+
+.hobak-list-badge--done {
+  background: rgba(33, 37, 41, 0.78);
+}
+
+.hobak-list-badge--free {
+  background: var(--hobak-orange);
+}
+
+.hobak-list-badge--selling {
+  background: rgba(255, 111, 15, 0.88);
+}
+
+/* 거래 완료된 상품 흐리게 처리 */
+.hobak-list-card.is-sold-done {
+  opacity: 0.56;
+}
+
+.hobak-list-card.is-sold-done .hobak-list-thumb {
+  filter: grayscale(35%);
+}
+
+.hobak-list-card-body {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.hobak-list-card-title {
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--hobak-text);
+  line-height: 1.38;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  word-break: keep-all;
+}
+
+.hobak-list-card-price {
+  font-size: 15.5px;
+  font-weight: 800;
+  color: var(--hobak-text);
+  margin-top: 2px;
+}
+
+.hobak-list-card-price.is-free {
+  color: var(--hobak-orange);
+}
+
+.hobak-list-card-meta {
+  font-size: 12.5px;
+  color: var(--hobak-text-muted);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.hobak-list-card-stats {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 4px;
+  font-size: 12px;
+  color: var(--hobak-text-muted);
+}
+
+.hobak-list-stat-text {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.hobak-list-like-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+  height: 26px;
+  padding: 0 8px;
+  border-radius: var(--hobak-radius-pill);
+  font-size: 12px;
+  color: var(--hobak-text-muted);
+  background: transparent;
+  transition: background-color 0.15s, color 0.15s, transform 0.1s;
+}
+
+.hobak-list-like-btn:hover {
+  background: var(--hobak-chip-bg);
+  color: var(--hobak-text);
+}
+
+.hobak-list-like-btn.is-liked {
+  color: var(--hobak-orange);
+  background: var(--hobak-orange-light);
+  font-weight: 600;
+}
+
+.hobak-list-like-btn:active {
+  transform: scale(0.94);
+}
+
+/* 우측 사이드바: 인기 검색어 */
+.hobak-list-sidebar {
+  position: sticky;
+  top: 84px;
+}
+
+.hobak-list-popular-box {
+  border: 1px solid var(--hobak-border);
+  border-radius: 12px;
+  padding: 18px;
+  background: #ffffff;
+}
+
+.hobak-list-popular-title {
+  font-size: 14.5px;
+  font-weight: 700;
+  color: var(--hobak-text);
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.hobak-list-keyword-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+}
+
+.hobak-list-keyword-tag {
+  display: inline-flex;
+  align-items: center;
+  height: 30px;
+  padding: 0 11px;
+  border-radius: var(--hobak-radius-pill);
+  border: 1px solid var(--hobak-border);
+  background: #ffffff;
+  color: var(--hobak-text-sub);
+  font-size: 12.5px;
+  font-weight: 500;
+  transition: background-color 0.15s, border-color 0.15s, color 0.15s;
+}
+
+.hobak-list-keyword-tag:hover {
+  background: var(--hobak-bg-sub);
+  border-color: var(--hobak-border-dark);
+  color: var(--hobak-text);
+}
+
+.hobak-list-keyword-tag.is-active {
+  background: var(--hobak-orange-light);
+  border-color: var(--hobak-orange);
+  color: var(--hobak-orange);
+  font-weight: 700;
+}
+
+/* 페이지네이션 */
+.hobak-list-pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  margin-top: 40px;
+}
+
+.hobak-list-page-btn {
+  min-width: 34px;
+  height: 34px;
+  padding: 0 10px;
+  border-radius: var(--hobak-radius-sm);
+  font-size: 13.5px;
+  font-weight: 500;
+  color: var(--hobak-text-sub);
+  background: #ffffff;
+  border: 1px solid transparent;
+  transition: background-color 0.15s, color 0.15s;
+}
+
+.hobak-list-page-btn:hover:not(:disabled) {
+  background: var(--hobak-chip-bg);
+  color: var(--hobak-text);
+}
+
+.hobak-list-page-btn.is-active {
+  background: #212529;
+  color: #ffffff;
+  font-weight: 700;
+}
+
+.hobak-list-page-btn:disabled {
+  opacity: 0.35;
+  cursor: default;
+}
+
+/* 빈 결과 상태 */
+.hobak-list-empty {
+  padding: 64px 20px;
+  text-align: center;
+  border: 1px dashed var(--hobak-border-dark);
+  border-radius: var(--hobak-radius-lg);
+  background: var(--hobak-bg-sub);
+}
+
+.hobak-list-empty-icon {
+  font-size: 40px;
+  margin-bottom: 10px;
+}
+
+.hobak-list-empty-title {
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--hobak-text);
+  margin-bottom: 6px;
+}
+
+.hobak-list-empty-desc {
+  font-size: 13.5px;
+  color: var(--hobak-text-muted);
+  margin-bottom: 18px;
+}
+
+/* 반응형 브레이크포인트 */
+@media (max-width: 860px) {
+  .hobak-list-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .hobak-list-sidebar {
+    position: static;
+    order: -1;
+  }
+
+  .hobak-list-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 22px 14px;
+  }
+}
+
+@media (max-width: 520px) {
+  .hobak-list-page {
+    padding: 14px 16px 0;
+  }
+
+  .hobak-list-title {
+    font-size: 19px;
+  }
+
+  .hobak-list-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+}

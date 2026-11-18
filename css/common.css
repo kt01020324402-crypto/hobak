@@ -1,0 +1,278 @@
+/* 호박 (Hobak) - 공통 디자인 시스템 및 레이아웃 */
+:root {
+  --hobak-orange: #ff6f0f;
+  --hobak-orange-hover: #e85f05;
+  --hobak-orange-light: #fff3eb;
+  --hobak-bg: #ffffff;
+  --hobak-bg-sub: #f8f9fa;
+  --hobak-text: #212529;
+  --hobak-text-sub: #4d5159;
+  --hobak-text-muted: #868e96;
+  --hobak-border: #eaebee;
+  --hobak-border-dark: #dcdee3;
+  --hobak-chip-bg: #f2f3f6;
+  --hobak-radius-sm: 6px;
+  --hobak-radius-md: 10px;
+  --hobak-radius-lg: 14px;
+  --hobak-radius-pill: 9999px;
+  --hobak-shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.06);
+  --hobak-shadow-md: 0 4px 16px rgba(0, 0, 0, 0.08);
+  --hobak-max-width: 1024px;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+    'Noto Sans KR', 'Apple SD Gothic Neo', sans-serif;
+  color: var(--hobak-text);
+  background-color: var(--hobak-bg);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button,
+input,
+select,
+textarea {
+  font-family: inherit;
+  color: inherit;
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  background: none;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+/* 공통 헤더 */
+.hobak-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(255, 255, 255, 0.96);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--hobak-border);
+}
+
+.hobak-header-inner {
+  max-width: var(--hobak-max-width);
+  margin: 0 auto;
+  padding: 12px 20px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.hobak-logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 22px;
+  font-weight: 800;
+  color: var(--hobak-orange);
+  letter-spacing: -0.5px;
+  flex-shrink: 0;
+}
+
+.hobak-logo-icon {
+  width: 30px;
+  height: 30px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hobak-search-wrap {
+  flex: 1;
+  max-width: 440px;
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.hobak-search-input {
+  width: 100%;
+  height: 40px;
+  padding: 0 42px 0 16px;
+  border-radius: var(--hobak-radius-sm);
+  border: 1px solid var(--hobak-border);
+  background: var(--hobak-bg-sub);
+  font-size: 14px;
+  transition: border-color 0.15s, background-color 0.15s;
+}
+
+.hobak-search-input:focus {
+  outline: none;
+  border-color: var(--hobak-orange);
+  background: #ffffff;
+}
+
+.hobak-search-btn {
+  position: absolute;
+  right: 10px;
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--hobak-text-muted);
+}
+
+.hobak-header-actions {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+}
+
+.hobak-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  height: 38px;
+  padding: 0 16px;
+  border-radius: var(--hobak-radius-sm);
+  font-size: 14px;
+  font-weight: 600;
+  transition: background-color 0.15s, border-color 0.15s, transform 0.1s;
+}
+
+.hobak-btn:active {
+  transform: scale(0.98);
+}
+
+.hobak-btn-primary {
+  background: var(--hobak-orange);
+  color: #ffffff;
+}
+
+.hobak-btn-primary:hover {
+  background: var(--hobak-orange-hover);
+}
+
+.hobak-btn-outline {
+  border: 1px solid var(--hobak-border-dark);
+  background: #ffffff;
+  color: var(--hobak-text);
+}
+
+.hobak-btn-outline:hover {
+  background: var(--hobak-bg-sub);
+}
+
+/* 공통 푸터 */
+.hobak-footer {
+  margin-top: 64px;
+  border-top: 1px solid var(--hobak-border);
+  background: var(--hobak-bg-sub);
+  color: var(--hobak-text-muted);
+  font-size: 13px;
+}
+
+.hobak-footer-inner {
+  max-width: var(--hobak-max-width);
+  margin: 0 auto;
+  padding: 40px 20px 56px;
+}
+
+.hobak-footer-top {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 32px;
+  padding-bottom: 32px;
+  border-bottom: 1px solid var(--hobak-border);
+}
+
+.hobak-footer-brand {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.hobak-footer-cols {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(90px, 1fr));
+  gap: 24px;
+}
+
+.hobak-footer-col h4 {
+  color: var(--hobak-text);
+  font-size: 13px;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.hobak-footer-col ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.hobak-footer-bottom {
+  padding-top: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: 12px;
+  line-height: 1.6;
+}
+
+/* 토스트 알림 */
+.hobak-toast {
+  position: fixed;
+  bottom: 28px;
+  left: 50%;
+  transform: translateX(-50%) translateY(20px);
+  background: rgba(33, 37, 41, 0.92);
+  color: #ffffff;
+  padding: 10px 20px;
+  border-radius: var(--hobak-radius-pill);
+  font-size: 14px;
+  font-weight: 500;
+  z-index: 9999;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s, transform 0.2s;
+}
+
+.hobak-toast.show {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+@media (max-width: 768px) {
+  .hobak-header-inner {
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  .hobak-search-wrap {
+    order: 3;
+    max-width: 100%;
+    flex-basis: 100%;
+  }
+  .hobak-footer-cols {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
